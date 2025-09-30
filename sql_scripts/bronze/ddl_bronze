@@ -84,3 +84,25 @@ CREATE TABLE bronze.product_category_name_translation (
 	product_category_name NVARCHAR(50),
 	product_category_name_english NVARCHAR(50)
 );
+
+IF OBJECT_ID ('bronze.order_payments', 'U') IS NOT NULL
+	DROP TABLE bronze.order_payments;
+CREATE TABLE bronze.order_payments (
+	order_id NVARCHAR(50),
+	payment_sequential INT,
+	payment_type NVARCHAR(50),
+	payment_installments INT,
+	payment_value FLOAT
+);
+
+IF OBJECT_ID ('bronze.order_reviews', 'U') IS NOT NULL
+	DROP TABLE bronze.order_reviews;
+CREATE TABLE bronze.order_reviews (
+	review_id NVARCHAR(50),
+	order_id NVARCHAR(50),
+	review_score INT,
+	review_comment_title NVARCHAR(50),
+	review_comment_message NVARCHAR(50),
+	review_creation_date NVARCHAR(50),
+	review_answer_timestamp NVARCHAR(50)
+);
