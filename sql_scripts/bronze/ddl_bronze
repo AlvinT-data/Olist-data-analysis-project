@@ -15,7 +15,7 @@ IF OBJECT_ID ('bronze.customers', 'U') IS NOT NULL
 CREATE TABLE bronze.customers (
 	customer_id NVARCHAR(50),
 	customer_unique_id NVARCHAR(50),
-	customer_zip_code_prefix INT,
+	customer_zip_code_prefix NVARCHAR(50),
 	customer_city NVARCHAR(50),
 	customer_state NVARCHAR(50)
 );
@@ -23,9 +23,9 @@ CREATE TABLE bronze.customers (
 IF OBJECT_ID ('bronze.geolocation', 'U') IS NOT NULL
 	DROP TABLE bronze.geolocation;
 CREATE TABLE bronze.geolocation (
-	geolocation_zip_code_prefix INT,
-	geolocation_lat INT,
-	geolocation_lng INT,
+	geolocation_zip_code_prefix NVARCHAR(50),
+	geolocation_lat FLOAT,
+	geolocation_lng FLOAT,
 	geolocation_city NVARCHAR(50),
 	geolocation_state NVARCHAR(50)
 );
@@ -73,7 +73,7 @@ IF OBJECT_ID ('bronze.sellers', 'U') IS NOT NULL
 	DROP TABLE bronze.sellers;
 CREATE TABLE bronze.sellers (
 	seller_id NVARCHAR(50),
-	seller_zip_code_prefix INT,
+	seller_zip_code_prefix NVARCHAR(50),
 	seller_city NVARCHAR(50),
 	seller_state NVARCHAR(50)
 );
@@ -98,11 +98,11 @@ CREATE TABLE bronze.order_payments (
 IF OBJECT_ID ('bronze.order_reviews', 'U') IS NOT NULL
 	DROP TABLE bronze.order_reviews;
 CREATE TABLE bronze.order_reviews (
-	review_id NVARCHAR(50),
-	order_id NVARCHAR(50),
-	review_score INT,
-	review_comment_title NVARCHAR(50),
-	review_comment_message NVARCHAR(50),
-	review_creation_date NVARCHAR(50),
-	review_answer_timestamp NVARCHAR(50)
+	review_id NVARCHAR(1000),
+	order_id NVARCHAR(1000),
+	review_score NVARCHAR(200),
+	review_comment_title NVARCHAR(1000),
+	review_comment_message NVARCHAR(1000),
+	review_creation_date NVARCHAR(1000),
+	review_answer_timestamp NVARCHAR(1000)
 );
