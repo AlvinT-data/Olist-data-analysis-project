@@ -39,7 +39,7 @@ CREATE TABLE silver.order_items (
 	order_item_id INT,
 	product_id NVARCHAR(50),
 	seller_id NVARCHAR(50),
-	shipping_limit_date NVARCHAR(50),
+	shipping_limit_date DATETIME,
 	price FLOAT,
 	freight_value FLOAT,
 	dwh_create_date DATETIME2 DEFAULT GETDATE()
