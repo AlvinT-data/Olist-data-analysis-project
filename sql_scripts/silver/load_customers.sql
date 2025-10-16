@@ -19,9 +19,9 @@ INSERT INTO silver.customers (
 	customer_state
 )
 SELECT 
-	customer_id,
-	customer_unique_id,
-	customer_zip_code_prefix,
+	TRIM('"' FROM customer_id) AS customer_id,
+	TRIM('"' FROM customer_unique_id) AS customer_unique_id,
+	TRIM('"' FROM customer_zip_code_prefix) AS customer_zip_code_prefix,
 	TRIM(customer_city) AS customer_city,
 	UPPER(TRIM(customer_state)) AS customer_abbrev_state,
 	CASE UPPER(TRIM(customer_state))
