@@ -96,9 +96,8 @@ IF OBJECT_ID ('silver.order_payments', 'U') IS NOT NULL
 	DROP TABLE silver.order_payments;
 CREATE TABLE silver.order_payments (
 	order_id NVARCHAR(50),
-	payment_sequential INT,
 	payment_type NVARCHAR(50),
-	payment_installments INT,
+	avg_payment_installments INT,
 	payment_value FLOAT,
 	dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
