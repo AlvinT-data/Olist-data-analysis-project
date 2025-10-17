@@ -51,11 +51,11 @@ CREATE TABLE silver.orders (
 	order_id NVARCHAR(50),
 	customer_id NVARCHAR(50),
 	order_status NVARCHAR(50),
-	order_purchase_timestamp NVARCHAR(50),
-	order_approved_at NVARCHAR(50),
-	order_delivered_carrier_date NVARCHAR(50),
-	order_delivered_customer_date NVARCHAR(50),
-	order_estimated_delivery_date NVARCHAR(50),
+	order_purchase_timestamp DATETIME,
+	order_approved_at DATETIME,
+	order_delivered_carrier_date DATETIME,
+	order_delivered_customer_date DATETIME,
+	order_estimated_delivery_date DATETIME,
 	dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
 
