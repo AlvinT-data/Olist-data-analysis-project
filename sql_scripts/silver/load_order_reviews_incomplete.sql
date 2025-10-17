@@ -8,7 +8,7 @@ Script Purpose:
     Performed data enrichment by adding the long state name to increase readability
 ====================================================================================
 */
-
+-- There's  problem with the bronze layer load in script
 TRUNCATE TABLE silver.order_reviews
 INSERT INTO silver.order_reviews (
     review_id,
