@@ -105,12 +105,12 @@ CREATE TABLE silver.order_payments (
 IF OBJECT_ID ('silver.order_reviews', 'U') IS NOT NULL
 	DROP TABLE silver.order_reviews;
 CREATE TABLE silver.order_reviews (
-	review_id NVARCHAR(1000),
-	order_id NVARCHAR(1000),
+	review_id NVARCHAR(50),
+	order_id NVARCHAR(50),
 	review_score NVARCHAR(200),
-	review_comment_title NVARCHAR(1000),
-	review_comment_message NVARCHAR(1000),
-	review_creation_date NVARCHAR(1000),
-	review_answer_timestamp NVARCHAR(1000),
+	review_comment_title NVARCHAR(max),
+	review_comment_message NVARCHAR(max),
+	review_creation_date DATETIME,
+	review_answer_timestamp DATETIME,
 	dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
