@@ -1,33 +1,48 @@
 /*
-=============================================================================
+=====================================================================================
 Create Dimension: gold.dim_products
 Script Purpose:
     This script creates a view for the products dimension in the Gold layer 
 	in the data warehouse. 
 
-The products dimension includes information of each product's gmv, 
-shipping cost, units sold, allow further analysis on products
+The products dimension includes information of each product's gmv, shipping cost, 
+units sold, and review score, allow further analysis on products
 
 To use the view:
 SELECT *
 FROM gold.dim_products
-=============================================================================
+=====================================================================================
 */
 IF OBJECT_ID('gold.dim_products', 'V') IS NOT NULL
     DROP VIEW gold.dim_products;
 GO
 
 CREATE VIEW gold.dim_products AS
+WITH orders_with_reviews AS (
+	SELECT 
+		o.order_id,
+		ore.review_score  
+	FROM silver.orders o
+	LEFT JOIN (
+		SELECT order_id, AVG(CAST(review_score AS INT)) review_score
+		FROM silver.order_reviews
+		GROUP BY order_id
+	) ore
+		ON o.order_id = ore.order_id
+)
 SELECT 
-	product_id,
+	oi.product_id,
 	COUNT(*) units_sold,
-	MIN(price) lowest_price,
-	MAX(price) highest_price,
-	ROUND(AVG(price),2) avg_price,
-	SUM(price) gross_merchandise_value,
-	ROUND(AVG(freight_value),2) avg_shipping_cost,
-	SUM(freight_value) total_shipping_cost
-FROM silver.order_items
+	MIN(oi.price) lowest_price,
+	MAX(oi.price) highest_price,
+	ROUND(AVG(oi.price),2) avg_price,
+	SUM(oi.price) gross_merchandise_value,
+	ROUND(AVG(oi.freight_value),2) avg_shipping_cost,
+	SUM(oi.freight_value) total_shipping_cost,
+	ROUND(AVG(owr.review_score), 1) avg_review_score
+FROM silver.order_items oi
+LEFT JOIN orders_with_reviews owr
+	ON oi.order_id = owr.order_id
 GROUP BY product_id
 
 
