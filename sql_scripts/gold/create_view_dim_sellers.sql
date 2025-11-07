@@ -2,7 +2,7 @@
 =============================================================================
 Create Dimension: gold.dim_sellers
 Script Purpose:
-    This script creates a view for the customers dimension in the Gold layer 
+    This script creates a view for the sellers dimension in the Gold layer 
 	in the data warehouse. 
 
 The customers dimension includes information from the sellers, orders, order
