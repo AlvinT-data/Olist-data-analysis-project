@@ -8,6 +8,10 @@ Script Purpose:
 The customers dimension includes information from the sellers, orders, order
 items and geolocation tables, allow further analysis on sellers performance
 with it
+
+To use the view:
+SELECT *
+FROM gold.dim_sellers
 =============================================================================
 */
 IF OBJECT_ID('gold.dim_sellers', 'V') IS NOT NULL
@@ -21,6 +25,7 @@ WITH seller_data AS
 		oi.seller_id,
 		COUNT(*) AS items_sold,
 		COUNT(DISTINCT o.order_id) AS orders_count,
+		SUM(oi.price) AS revenue,
 		MIN(o.order_purchase_timestamp) AS first_sale_date,
 		MAX(o.order_purchase_timestamp) AS last_sale_date,
 		COUNT(DISTINCT CASE WHEN o.order_status = 'delivered' THEN o.order_id ELSE NULL END) AS delivered_orders
@@ -35,6 +40,7 @@ SELECT
 	sd.items_sold,
 	sd.orders_count,
 	sd.delivered_orders,
+	sd.revenue,
 	sd.first_sale_date,
 	sd.last_sale_date,
 	s.seller_zip_code_prefix AS zip_code,
@@ -49,5 +55,3 @@ LEFT JOIN seller_data sd
 LEFT JOIN silver.geolocation geo
 	ON geo.zip_code_prefix = s.seller_zip_code_prefix
 
-	SELECT *
-	FROM gold.dim_sellers
