@@ -28,6 +28,10 @@ WITH seller_data AS
 		SUM(oi.price) AS revenue,
 		MIN(o.order_purchase_timestamp) AS first_sale_date,
 		MAX(o.order_purchase_timestamp) AS last_sale_date,
+		CAST(ROUND(1.0 *
+		COUNT(DISTINCT CASE WHEN o.order_delivered_customer_date > o.order_estimated_delivery_date THEN o.order_id END)
+		/ NULLIF(COUNT(DISTINCT CASE WHEN o.order_delivered_customer_date IS NOT NULL AND o.order_estimated_delivery_date IS NOT NULL THEN o.order_id END), 0)
+		, 2) AS DECIMAL(10,2)) AS late_delivery_rate,
 		COUNT(DISTINCT CASE WHEN o.order_status = 'delivered' THEN o.order_id ELSE NULL END) AS delivered_orders
 	FROM silver.orders o
 	LEFT JOIN silver.order_items oi
@@ -41,6 +45,7 @@ SELECT
 	sd.orders_count,
 	sd.delivered_orders,
 	sd.revenue,
+	sd.late_delivery_rate,
 	sd.first_sale_date,
 	sd.last_sale_date,
 	s.seller_zip_code_prefix AS zip_code,
@@ -54,4 +59,3 @@ LEFT JOIN seller_data sd
 	ON s.seller_id = sd.seller_id
 LEFT JOIN silver.geolocation geo
 	ON geo.zip_code_prefix = s.seller_zip_code_prefix
-
