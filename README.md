@@ -27,14 +27,18 @@ Orders: logical validations (e.g., date inconsistencies flag)
 Integrity: PK uniqueness + FK coverage checks across all Silver tables
 
 ### Gold (Views; Tableau-ready)
-Dimensions:
+#### Dimensions:
 dim_customers (1 row/customer_id, identity + geography + order lifecycle aggregates)
+
 dim_sellers (1 row/seller_id, identity + geography; KPIs in a separate view)
+
 dim_products (1 row/product_id; currently behavior-based features from order_items)
+
 dim_payment_methods (1 row/order_id & payment_method)
 
-Facts (as views):
+#### Facts (as views):
 fact_order_items (atomic sales; price, freight, timestamps via orders)
+
 fact_orders (order-level KPIs, SLAs, roll-ups)
 
 Tableau (planned)
