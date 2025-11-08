@@ -1,3 +1,44 @@
 # Olist-data-analysis-project
-This project showcases the end-to-end process of building a data warehouse in Microsoft SQL Server using the Medallion Architecture (Bronze → Silver → Gold) to perform ETL, data modeling and publishing insights through Tableau Public.
-The dataset comes from the Brazilian Olist E-Commerce Public Dataset, which contains multiple related tables covering orders, customers, sellers, products, payments, reviews, and geolocation.
+A Medallion-style warehouse (Bronze → Silver → Gold) for the Olist Brazilian e-commerce dataset. Focused on realistic ETL, standardization, quality validation, and Tableau-ready marts.
+
+## Dataset
+Source: [Olist Brazilian E-Commerce]{https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce}
+
+Scope: Orders, Order Items, Payments, Reviews, Customers, Sellers, Products, Geolocation
+
+Note: Tableau Public export via CSV (no live SQL Server connection)
+
+## Architecture
+### Bronze (Raw)
+Ingestion: BULK INSERT (CSV)
+Policy: loaded “as-is” (no renaming/cleaning)
+
+### Silver (Cleaned/Standardized)
+Text: TRIM, NULLIF, non-breaking space cleanup
+
+Dates: TRY_CONVERT(datetime2, …)
+
+Customers: clarified customer_id vs customer_unique_id (bridge built)
+
+Geolocation: deduped to 1 row per (zip_code_prefix, state) with averaged lat/long
+
+Orders: logical validations (e.g., date inconsistencies flag)
+
+Integrity: PK uniqueness + FK coverage checks across all Silver tables
+
+### Gold (Views; Tableau-ready)
+Dimensions:
+dim_customers (1 row/customer_id, identity + geography + order lifecycle aggregates)
+dim_sellers (1 row/seller_id, identity + geography; KPIs in a separate view)
+dim_products (1 row/product_id; currently behavior-based features from order_items)
+dim_payment_methods (1 row/order_id & payment_method)
+
+Facts (as views):
+fact_order_items (atomic sales; price, freight, timestamps via orders)
+fact_orders (order-level KPIs, SLAs, roll-ups)
+
+Tableau (planned)
+
+Dashboards: Sales & Mix, Fulfillment & SLAs, Payment Mix, Reviews & CX
+
+Data source: exported CSVs from Gold views (documented column order + types)
