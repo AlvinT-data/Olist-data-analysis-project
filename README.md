@@ -14,17 +14,15 @@ Ingestion: BULK INSERT (CSV)
 Policy: loaded “as-is” (no renaming/cleaning)
 
 ### Silver (Cleaned/Standardized)
-Text: TRIM, NULLIF, non-breaking space cleanup
+Text: TRIM, non-breaking space cleanup
 
 Dates: TRY_CONVERT(datetime2, …)
-
-Customers: clarified customer_id vs customer_unique_id (bridge built)
 
 Geolocation: deduped to 1 row per (zip_code_prefix, state) with averaged lat/long
 
 Orders: logical validations (e.g., date inconsistencies flag)
 
-Integrity: PK uniqueness + FK coverage checks across all Silver tables
+Integrity: PK uniqueness + Foreign Key coverage checks across all Silver tables
 
 ### Gold (Views; Tableau-ready)
 #### Dimensions:
@@ -37,9 +35,9 @@ dim_products (1 row/product_id; currently behavior-based features from order_ite
 dim_payment_methods (1 row/order_id & payment_method)
 
 #### Facts (as views):
-fact_order_items (atomic sales; price, freight, timestamps via orders)
+fact_order_items (atomic sales; price, freight)
 
-fact_orders (order-level KPIs, SLAs, roll-ups)
+fact_orders (order-level KPIs, SLAs, roll-ups, timestamps)
 
 Tableau (planned)
 
