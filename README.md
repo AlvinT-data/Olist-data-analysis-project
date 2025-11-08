@@ -2,7 +2,7 @@
 A Medallion-style warehouse (Bronze → Silver → Gold) for the Olist Brazilian e-commerce dataset. Focused on realistic ETL, standardization, quality validation, and Tableau-ready marts.
 
 ## Dataset
-Source: [Olist Brazilian E-Commerce]{https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce}
+Source: [Olist Brazilian E-Commerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
 Scope: Orders, Order Items, Payments, Reviews, Customers, Sellers, Products, Geolocation
 
