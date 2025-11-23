@@ -8,6 +8,29 @@ Script Purpose:
 The customers dimension includes information from the customers, orders, and
 geolocation tables, allow further analysis on customer behavior with it
 
+Fields:
+c.customer_id — order-level customer identifier for joins to orders.
+
+c.customer_unique_id — stable person identifier used to track returning customers.
+
+o.order_status — status of the joined order record (e.g., delivered, canceled).
+
+o.order_purchase_timestamp (purchase_date) — timestamp when the joined order was placed.
+
+o.order_delivered_customer_date (delivered_date) — timestamp when the joined order was delivered (if delivered).
+
+oi.customer_item_revenue_total — customer’s cumulative spend on items only (excludes freight).
+
+c.customer_zip_code_prefix — postal prefix for the customer’s address.
+
+c.customer_city — customer’s city (as provided in source).
+
+c.customer_state — two-letter state/UF code for the customer.
+
+geo.latitude — latitude for the customer’s zip prefix
+
+geo.longitude — longitude for the customer’s zip prefix
+
 To use the view:
 SELECT *
 FROM gold.dim_customers
@@ -19,7 +42,6 @@ GO
 
 CREATE VIEW gold.dim_customers AS
 SELECT 
-	ROW_NUMBER() OVER (ORDER BY c.customer_id) AS customer_key, -- Surrogate key
 	c.customer_id,
 	c.customer_unique_id,
 	o.order_status,
