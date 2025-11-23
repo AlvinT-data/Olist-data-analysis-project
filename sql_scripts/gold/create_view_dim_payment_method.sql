@@ -8,6 +8,15 @@ Script Purpose:
 The products dimension includes information of each order's payment method, 
 allow further analysis on customer behavior
 
+Fields:
+payment_method_key: unique identifier for each order id and payment type pair
+
+order_id: order id of each record
+
+payment_type: payment method for the order, each order can have more than one payment method
+
+payment_value: amount paid by the corresponding payment method for the order
+
 To use the view:
 SELECT *
 FROM gold.dim_payment_method
