@@ -11,6 +11,7 @@ allow further analysis on the orders and delivery logistic workflow
 Fields:
 o.order_id — unique ID for the order.
 
+o.customer_id — unique ID for the customer of the order.
 o.order_status — final order status (e.g., delivered, shipped, canceled).
 
 o.order_purchase_timestamp — when the customer placed the order.
@@ -41,6 +42,7 @@ GO
 CREATE VIEW gold.fact_orders AS
 SELECT
   o.order_id,
+  o.customer_id,
   o.order_status,
   o.order_purchase_timestamp,
   o.order_approved_at,
