@@ -8,6 +8,25 @@ Script Purpose:
 The products dimension includes information of each product's gmv, shipping cost, 
 units sold, and review score, allow further analysis on products
 
+Fields:
+product_id — unique identifier of the product (dimension grain).
+
+units_sold — total item occurrences sold (count of order-item rows).
+
+lowest_price — minimum unit price observed for this product.
+
+highest_price — maximum unit price observed for this product.
+
+avg_price — average unit price across all sales.
+
+gross_merchandise_value — total item revenue (Σ unit price, excludes shipping).
+
+avg_shipping_cost — average freight (shipping) charged per item.
+
+total_shipping_cost — total freight charged across all sales of this product.
+
+avg_review_score — average review score of orders containing this product
+
 To use the view:
 SELECT *
 FROM gold.dim_products
