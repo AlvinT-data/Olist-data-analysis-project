@@ -52,7 +52,7 @@ SELECT
 	sd.items_sold,
 	sd.orders_count,
 	sd.delivered_orders,
-	sd.revenue,
+	ROUND(sd.revenue, 2) revenue,
 	sd.late_delivery_rate,
 	sd.first_sale_date,
 	sd.last_sale_date,
