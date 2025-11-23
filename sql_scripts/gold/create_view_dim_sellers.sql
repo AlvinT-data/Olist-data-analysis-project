@@ -10,6 +10,33 @@ items, geolocation and reviews tables. It provides the data like number of
 items sold and late delivery rate which allow further analysis on sellers 
 performance with it.
 
+Fields:
+seller_id — unique identifier of the seller
+
+items_sold — total item quantity sold by this seller
+
+orders_count — distinct orders that included this seller’s items.
+
+delivered_orders — distinct orders delivered to customers that included this seller’s items.
+
+revenue — total sales value for this seller (calculated by item price and the quantity only, shipment not considered)
+
+late_delivery_rate — share of the seller’s delivered orders that arrived after the estimated date
+
+first_sale_date — earliest purchase timestamp among the seller’s orders.
+
+last_sale_date — most recent purchase timestamp among the seller’s orders.
+
+avg_review_score — average review score of orders containing this seller’s items
+
+seller_city — seller’s city from the sellers table.
+
+seller_state — two-letter state/UF code for the seller.
+
+latitude — latitude for the seller’s zip prefix
+
+longitude — longitude for the seller’s zip prefix
+
 To use the view:
 SELECT *
 FROM gold.dim_sellers
