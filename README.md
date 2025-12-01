@@ -42,6 +42,7 @@ fact_orders (order-level KPIs, SLAs, roll-ups, timestamps)
 ## Tableau
 Data source: exported CSVs from Gold views (documented column order + types)
 
-[Ecommerce Sales Dashboard]([https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce](https://public.tableau.com/app/profile/panda.data5916/viz/Olist_Project_17645703081230/EcommerceSalesDashboard?publish=yes))
+[Ecommerce Sales Dashboard](https://public.tableau.com/app/profile/panda.data5916/viz/Olist_Project_17645703081230/EcommerceSalesDashboard?publish=yes)
+
 ![Dashboard1](dashboards/Ecommerce Sales Dashboard.png)
 
