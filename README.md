@@ -44,5 +44,5 @@ Data source: exported CSVs from Gold views (documented column order + types)
 
 [Ecommerce Sales Dashboard](https://public.tableau.com/app/profile/panda.data5916/viz/Olist_Project_17645703081230/EcommerceSalesDashboard?publish=yes)
 
-![Dashboard1](dashboards/Ecommerce Sales Dashboard.png)
+![Dashboard1](dashboards/Ecommerce_Sales_Dashboard.png)
 
