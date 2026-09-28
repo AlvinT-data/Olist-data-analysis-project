@@ -26,5 +26,5 @@ SELECT
     review_comment_title,
     review_comment_message,
     CAST(review_creation_date AS datetime) AS review_creation_date,
-    CAST(TRIM(NCHAR(32) FROM review_creation_date) AS datetime) AS review_answer_timestamp
+    CAST(TRIM(NCHAR(32) FROM review_answer_timestamp) AS datetime) AS review_answer_timestamp
 FROM bronze.order_reviews

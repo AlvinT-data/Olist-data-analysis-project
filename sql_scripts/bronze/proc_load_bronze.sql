@@ -30,7 +30,7 @@ BEGIN
 
 		PRINT '>> Inserting Data Into: bronze.customers';
 		BULK INSERT bronze.customers
-		FROM 'C:\Users\alvin\Desktop\Brazilian E-Commerce Public Dataset\olist_customers_dataset.csv'
+		FROM '$(DATASET_PATH)\olist_customers_dataset.csv'
 		WITH (
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',',       -- comma-separated
@@ -46,7 +46,7 @@ BEGIN
 		TRUNCATE TABLE bronze.geolocation
 		PRINT '>> Inserting Data Into: bronze.geolocation';
 		BULK INSERT bronze.geolocation
-		FROM 'C:\Users\alvin\Desktop\Brazilian E-Commerce Public Dataset\olist_geolocation_dataset.csv'
+		FROM '$(DATASET_PATH)\olist_geolocation_dataset.csv'
 		WITH (
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',',       -- comma-separated
@@ -62,7 +62,7 @@ BEGIN
 		TRUNCATE TABLE bronze.order_items
 		PRINT '>> Inserting Data Into: bronze.order_items';
 		BULK INSERT bronze.order_items
-		FROM 'C:\Users\alvin\Desktop\Brazilian E-Commerce Public Dataset\olist_order_items_dataset.csv'
+		FROM '$(DATASET_PATH)\olist_order_items_dataset.csv'
 		WITH (
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',', -- delimeter
@@ -78,7 +78,7 @@ BEGIN
 		TRUNCATE TABLE bronze.order_payments
 		PRINT '>> Inserting Data Into: bronze.order_payments';
 		BULK INSERT bronze.order_payments
-		FROM 'C:\Users\alvin\Desktop\Brazilian E-Commerce Public Dataset\olist_order_payments_dataset.csv'
+		FROM '$(DATASET_PATH)\olist_order_payments_dataset.csv'
 		WITH (
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',', -- delimeter
@@ -94,7 +94,7 @@ BEGIN
 		TRUNCATE TABLE bronze.order_reviews
 		PRINT '>> Inserting Data Into: bronze.order_reviews';
 		BULK INSERT bronze.order_reviews
-		FROM 'C:\Users\alvin\Desktop\Brazilian E-Commerce Public Dataset\olist_order_reviews_dataset.csv'
+		FROM '$(DATASET_PATH)\olist_order_reviews_dataset.csv'
 		WITH (
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',', -- delimeter
@@ -110,7 +110,7 @@ BEGIN
 		TRUNCATE TABLE bronze.orders
 		PRINT '>> Inserting Data Into: bronze.orders';
 		BULK INSERT bronze.orders
-		FROM 'C:\Users\alvin\Desktop\Brazilian E-Commerce Public Dataset\olist_orders_dataset.csv'
+		FROM '$(DATASET_PATH)\olist_orders_dataset.csv'
 		WITH (
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',', -- delimeter
@@ -126,7 +126,7 @@ BEGIN
 		TRUNCATE TABLE bronze.products
 		PRINT '>> Inserting Data Into: bronze.products';
 		BULK INSERT bronze.products
-		FROM 'C:\Users\alvin\Desktop\Brazilian E-Commerce Public Dataset\olist_products_dataset.csv'
+		FROM '$(DATASET_PATH)\olist_products_dataset.csv'
 		WITH (
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',', -- delimeter
@@ -142,7 +142,7 @@ BEGIN
 		TRUNCATE TABLE bronze.sellers
 		PRINT '>> Inserting Data Into: bronze.sellers';
 		BULK INSERT bronze.sellers
-		FROM 'C:\Users\alvin\Desktop\Brazilian E-Commerce Public Dataset\olist_sellers_dataset.csv'
+		FROM '$(DATASET_PATH)\olist_sellers_dataset.csv'
 		WITH (
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',', -- delimeter
@@ -158,7 +158,7 @@ BEGIN
 		TRUNCATE TABLE bronze.product_category_name_translation
 		PRINT '>> Inserting Data Into: bronze.product_category_name_translation';
 		BULK INSERT bronze.product_category_name_translation
-		FROM 'C:\Users\alvin\Desktop\Brazilian E-Commerce Public Dataset\product_category_name_translation.csv'
+		FROM '$(DATASET_PATH)\product_category_name_translation.csv'
 		WITH (
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',', -- delimeter

@@ -181,7 +181,7 @@ BEGIN
 			review_comment_title,
 			review_comment_message,
 			CAST(review_creation_date AS datetime) AS review_creation_date,
-			CAST(TRIM(NCHAR(32) FROM review_creation_date) AS datetime) AS review_answer_timestamp
+			CAST(TRIM(NCHAR(32) FROM review_answer_timestamp) AS datetime) AS review_answer_timestamp
 		FROM bronze.order_reviews;
 	    SET @end_time = GETDATE();
         PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
@@ -209,14 +209,8 @@ BEGIN
 			order_status,
 			CAST(order_purchase_timestamp AS datetime) AS order_purchase_timestamp,
 			CAST(order_approved_at AS datetime) AS order_approved_at,
-			CASE 
-				WHEN CAST(order_delivered_carrier_date AS datetime) > CAST(order_delivered_customer_date AS datetime) THEN CAST(order_delivered_customer_date AS datetime)
-				ELSE CAST(order_delivered_customer_date AS datetime)
-			END AS order_delivered_carrier_date,
-			CASE 
-				WHEN CAST(order_delivered_carrier_date AS datetime) > CAST(order_delivered_customer_date AS datetime) THEN CAST(order_delivered_carrier_date AS datetime)
-				ELSE CAST(order_delivered_customer_date AS datetime)
-			END AS order_delivered_customer_date,
+			CAST(order_delivered_carrier_date AS datetime) AS order_delivered_carrier_date,
+			CAST(order_delivered_customer_date AS datetime) AS order_delivered_customer_date,
 			CAST(order_estimated_delivery_date AS datetime) AS order_estimated_delivery_date
 		FROM bronze.orders;
 		SET @end_time = GETDATE();
@@ -255,11 +249,11 @@ BEGIN
 		PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
         PRINT '>> -------------';
 
-		-- Loading products
+		-- Loading sellers
 		SET @start_time = GETDATE();
-		PRINT '>> Truncating Table: silver.products';
-		TRUNCATE TABLE silver.products;
-		PRINT '>> Inserting Data Into: silver.products';
+		PRINT '>> Truncating Table: silver.sellers';
+		TRUNCATE TABLE silver.sellers;
+		PRINT '>> Inserting Data Into: silver.sellers';
 		INSERT INTO silver.sellers (
 			seller_id,
 			seller_zip_code_prefix,

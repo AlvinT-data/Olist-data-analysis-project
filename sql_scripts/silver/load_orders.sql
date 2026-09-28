@@ -27,13 +27,7 @@ SELECT
     order_status,
     CAST(order_purchase_timestamp AS datetime) AS order_purchase_timestamp,
     CAST(order_approved_at AS datetime) AS order_approved_at,
-    CASE 
-        WHEN CAST(order_delivered_carrier_date AS datetime) > CAST(order_delivered_customer_date AS datetime) THEN CAST(order_delivered_customer_date AS datetime)
-        ELSE CAST(order_delivered_customer_date AS datetime)
-    END AS order_delivered_carrier_date,
-    CASE 
-        WHEN CAST(order_delivered_carrier_date AS datetime) > CAST(order_delivered_customer_date AS datetime) THEN CAST(order_delivered_carrier_date AS datetime)
-        ELSE CAST(order_delivered_customer_date AS datetime)
-    END AS order_delivered_customer_date,
+    CAST(order_delivered_carrier_date AS datetime) AS order_delivered_carrier_date,
+    CAST(order_delivered_customer_date AS datetime) AS order_delivered_customer_date,
     CAST(order_estimated_delivery_date AS datetime) AS order_estimated_delivery_date
 FROM bronze.orders
